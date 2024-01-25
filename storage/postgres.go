@@ -17,11 +17,11 @@ type Config struct{
 
 func NewConnection(config *Config)(*gorm.DB, error){
 	dsn := fmt.Sprintf(
-		"host=%s port=%s password=%s dbname=%s sslmode=%s",
-		config.Host, config.Port, config.password, config.DBName, config.SSLMode
+		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s", config.Host, config.Port, config.User, config.Password, config.DBName, config.SSLMode,
 	)
+	
 
-	db, err := gorm.open(postgres.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil{
 		return db, err
